@@ -3,7 +3,6 @@ package it.hackcaffebabe.logger;
 /**
  * Enumerator to describe the level of log message.<br><br>
  * 
- * Copyright &copy 2013. All rights reserved. 
  * @author Andrea Ghizzoni. More info at andrea.ghz@gmail.com
  *
  */

@@ -11,7 +11,7 @@ import java.util.Date;
  * - <code>setPrintStream( PrintStream stream )</code> to set the stream on which to write the log messages.<br> 
  * - <code>write( String tag, String log )</code> to write a log message on the print stream.<br>
  * <br>
- * Copyright &copy 2013. All rights reserved. 
+ *  
  * @author Andrea Ghizzoni. More info at andrea.ghz@gmail.com
  *
  */
