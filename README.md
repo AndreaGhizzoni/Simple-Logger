@@ -1,1 +1,1 @@
-## Simple Logger for java projects.
+## Simple Logger for java projects
