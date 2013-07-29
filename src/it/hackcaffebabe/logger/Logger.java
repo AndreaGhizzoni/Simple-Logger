@@ -13,54 +13,44 @@ import java.util.Date;
  * <br>
  *  
  * @author Andrea Ghizzoni. More info at andrea.ghz@gmail.com
- *
+ * @version 1.0
  */
 public class Logger
 {
-	/**The default main stream*/
+	/** The default main stream*/
 	public static final PrintStream DEFAULT_RPRINT_STREAM = System.out;
-	/**The output stream to write the log*/
+	/** The output stream to write the log*/
 	private PrintStream printStream;
 
 	private static Logger logger;
 	private String messagePattern = "[%s] %-11s: %s";//[<date hours>]<tag>:\t<log>
 	
-	
 	/**
 	 * Returns the instance of logger object.<br> 
 	 * @return {@link Logger} the object represents the logger manager.
 	 */
-	public static Logger getInstance()
-	{
+	public static Logger getInstance(){
 		if( Logger.logger == null )
 			Logger.logger = new Logger();
 		return Logger.logger;
 	}
 	
-	
 	/**
 	 * Instance the logger with default print stream.
 	 */
-	private Logger()
-	{
+	private Logger(){
 		this.printStream = Logger.DEFAULT_RPRINT_STREAM;
 	}
 	
-
-/*====================================================================================================*/
-/*====================================================================================================*/
-/*																									  */
-/*										   	   METHODS												  */	
-/*																									  */
-/*====================================================================================================*/
-/*====================================================================================================*/		
+//====================================================================================================//
+// METHOD
+//====================================================================================================//		
 	/**
 	 * Write a specific log message with tag {@link Tag}
 	 * @param tag {@link Tag} the tag of log message.
 	 * @param log {@link String} the message of log.
 	 */
-	public synchronized void write( Tag tag, String log )
-	{
+	public synchronized void write( Tag tag, String log ){
 		if( log == null || log.isEmpty() )
 			return;
 	
@@ -69,41 +59,29 @@ public class Logger
 		this.printStream.flush();//flush the steam
 	}
 	
-	
-/*====================================================================================================*/
-/*====================================================================================================*/
-/*																									  */
-/*										   	   SETTER											  	  */	
-/*																									  */
-/*====================================================================================================*/
-/*====================================================================================================*/	
+//====================================================================================================//
+// SETTER
+//====================================================================================================//
 	/**
 	 * Sets the default print stream on witch will be write the log message.
 	 * @param printStream {@link PrintStream} the stream that will be write the log message.
-	 * @throws IllegalArgumentException {@link Exception} if printStream is null.
+	 * @throws IllegalArgumentException if printStream is null.
 	 */
-	public void setPrintStream( PrintStream printStream ) throws IllegalArgumentException
-	{
+	public void setPrintStream( PrintStream printStream ) throws IllegalArgumentException{
 		if( printStream == null )
 			throw new IllegalArgumentException( "Print stream can not ben null." );
 		
 		this.printStream = printStream;
 	}
 	
-	
-/*====================================================================================================*/
-/*====================================================================================================*/
-/*																									  */
-/*										   	   GETTER											  	  */	
-/*																									  */
-/*====================================================================================================*/
-/*====================================================================================================*/	
+//====================================================================================================//
+// GETTER
+//====================================================================================================//
 	/**
 	 * Returns the print stream that will be write all the log message.
 	 * @return {@link PrintStream} the print stream.
 	 */
-	public PrintStream getPrintStream()
-	{
+	public PrintStream getPrintStream(){
 		return this.printStream;
 	}
 }

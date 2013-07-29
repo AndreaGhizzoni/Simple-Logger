@@ -4,20 +4,20 @@ package it.hackcaffebabe.logger;
  * Enumerator to describe the level of log message.<br><br>
  * 
  * @author Andrea Ghizzoni. More info at andrea.ghz@gmail.com
- *
+ * @version 1.0
  */
 public enum Tag
 {
-	/**Default tag for Information log*/
+	/** Default tag for Information log*/
 	INFO,
-	/**Default tag for Debugging log*/
+	/** Default tag for Debugging log*/
 	DEBUG,
-	/**Default tag for Errors log*/
+	/** Default tag for Errors log*/
 	ERRORS, 
-	/**Default tag for Warning log*/
+	/** Default tag for Warning log*/
 	WARNING,
-	/**Default tag for Fatal Error log*/
+	/** Default tag for Fatal Error log*/
 	FATAL_ERROR,
-	/**Default tag for Verbose log*/
+	/** Default tag for Verbose log*/
 	VERBOSE;
 }
