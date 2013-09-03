@@ -40,6 +40,7 @@ public class Logger
 	 */
 	private Logger(){
 		this.printStream = Logger.DEFAULT_RPRINT_STREAM;
+		write( Tag.INFO, "Logger initialized correctly and started." );
 	}
 	
 //====================================================================================================//
