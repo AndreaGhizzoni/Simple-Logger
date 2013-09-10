@@ -2,6 +2,8 @@ package it.hackcaffebabe.logger;
 
 import java.io.PrintStream;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Simple skeleton class to instance a logger.<br><br>
@@ -19,11 +21,13 @@ public class Logger
 {
 	/** The default main stream*/
 	public static final PrintStream DEFAULT_RPRINT_STREAM = System.out;
-	/** The output stream to write the log*/
+	/* The output stream to write the log*/
 	private PrintStream printStream;
 
 	private static Logger logger;
 	private String messagePattern = "[%s] %-11s: %s";//[<date hours>]<tag>:\t<log>
+	/* The set of disable tag */
+	private Set<Tag> disableTag = new HashSet<>();
 	
 	/**
 	 * Returns the instance of logger object.<br> 
@@ -52,12 +56,22 @@ public class Logger
 	 * @param log {@link String} the message of log.
 	 */
 	public synchronized void write( Tag tag, String log ){
-		if( log == null || log.isEmpty() )
-			return;
-	
+		if( log == null || log.isEmpty() )return;
+		if( this.disableTag.contains( tag ) )return;
+		
 		this.printStream.append( String.format( this.messagePattern, new Date(), tag.toString(), log ) );
 		this.printStream.append( '\n' );
 		this.printStream.flush();//flush the steam
+	}
+	
+	
+	/**
+	 * This method disable specific tag on <code>write()</code> method.
+	 * @param t {@link Tag} the tag to disable. Pass null to clear all disable tag.
+	 */
+	public void disableTag( Tag t ){
+		if( t == null ) this.disableTag.clear();
+		this.disableTag.add( t );
 	}
 	
 //====================================================================================================//
@@ -82,7 +96,5 @@ public class Logger
 	 * Returns the print stream that will be write all the log message.
 	 * @return {@link PrintStream} the print stream.
 	 */
-	public PrintStream getPrintStream(){
-		return this.printStream;
-	}
+	public PrintStream getPrintStream(){ return this.printStream; }
 }
