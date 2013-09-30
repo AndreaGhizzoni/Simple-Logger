@@ -1,5 +1,3 @@
-# Simple Logger for java projects.
---------------
 ## How to use:
 
 Here is the logger initialization:
