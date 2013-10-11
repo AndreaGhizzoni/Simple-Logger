@@ -20,12 +20,12 @@ import java.util.Set;
 public class Logger
 {
 	/** The default main stream*/
-	public static final PrintStream DEFAULT_RPRINT_STREAM = System.out;
+	public static final PrintStream DEFAULT_PRINT_STREAM = System.out;
 	/* The output stream to write the log*/
 	private PrintStream printStream;
 
 	private static Logger logger;
-	private String messagePattern = "[%s] %-11s: %s";//[<date hours>]<tag>:\t<log>
+	private String messagePattern = "[%s] %-11s: %s\n";//[<date hours>]<tag>:\t<log>
 	/* The set of disable tag */
 	private Set<Tag> disableTag = new HashSet<>();
 	
@@ -43,8 +43,7 @@ public class Logger
 	 * Instance the logger with default print stream.
 	 */
 	private Logger(){
-		this.printStream = Logger.DEFAULT_RPRINT_STREAM;
-		write( Tag.INFO, "Logger initialized correctly and started." );
+		this.printStream = Logger.DEFAULT_PRINT_STREAM;
 	}
 	
 //====================================================================================================//
@@ -59,8 +58,7 @@ public class Logger
 		if( log == null || log.isEmpty() )return;
 		if( this.disableTag.contains( tag ) )return;
 		
-		this.printStream.append( String.format( this.messagePattern, new Date(), tag.toString(), log ) );
-		this.printStream.append( '\n' );
+		this.printStream.printf( this.messagePattern, new Date(), tag.toString(), log );
 		this.printStream.flush();//flush the steam
 	}
 	
