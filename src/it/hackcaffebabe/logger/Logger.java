@@ -25,7 +25,7 @@ public class Logger
 	private PrintStream printStream;
 
 	private static Logger logger;
-	private String messagePattern = "[%s] %-11s: %s\n";//[<date hours>]<tag>:\t<log>
+	private String messagePattern = "[%s] %s | %-7s: %s\n";//[<date&hours>]<class.method caller> | <tag>: <log>
 	/* The set of disable tag */
 	private Set<Tag> disableTag = new HashSet<>();
 	
@@ -52,16 +52,17 @@ public class Logger
 	/**
 	 * Write a specific log message with tag {@link Tag}
 	 * @param tag {@link Tag} the tag of log message.
-	 * @param log {@link String} the message of log.
+	 * @param obj {@link String} the message of log.
 	 */
-	public synchronized void write( Tag tag, String log ){
-		if( log == null || log.isEmpty() )return;
+	public synchronized void write( Tag tag, Object obj ){
+		if( obj == null || obj.toString().isEmpty() )return;
 		if( this.disableTag.contains( tag ) )return;
-		
-		this.printStream.printf( this.messagePattern, new Date(), tag.toString(), log );
-		this.printStream.flush();//flush the steam
+
+		StackTraceElement s = new Exception().getStackTrace()[1];
+		String formatted = String.format( "%s.%s", s.getClassName(), s.getMethodName() );
+		this.printStream.printf( this.messagePattern, new Date(), formatted, tag.toString(), obj.toString() );
+		this.printStream.flush();
 	}
-	
 	
 	/**
 	 * This method disable specific tag on <code>write()</code> method.

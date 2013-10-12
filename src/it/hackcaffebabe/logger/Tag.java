@@ -17,7 +17,7 @@ public enum Tag
 	/** Default tag for Warning log*/
 	WARNING,
 	/** Default tag for Fatal Error log*/
-	FATAL_ERROR,
+	PANIC,
 	/** Default tag for Verbose log*/
 	VERBOSE;
 }
