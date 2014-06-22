@@ -1,6 +1,7 @@
 package it.hackcaffebabe.logger;
 
 import java.io.PrintStream;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -69,7 +70,8 @@ public class Logger
 
 		StackTraceElement s = new Exception().getStackTrace()[1];
 		String formatted = String.format( "%s.%s", s.getClassName(), s.getMethodName() );
-		this.printStream.printf( this.messagePattern, new Date(), formatted, tag.toString(), obj.toString() );
+		String date = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss.SSS" ).format( new Date() );
+		this.printStream.printf( this.messagePattern, date, formatted, tag.toString(), obj.toString() );
 		this.printStream.flush();
 	}
 
